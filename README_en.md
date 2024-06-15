@@ -1,7 +1,7 @@
 # GLM-4
 
 <p align="center">
-🤗 <a href="https://huggingface.co/collections/THUDM/glm-4-665fcf188c414b03c2f7e3b7" target="_blank">HF Repo</a> • 🤖 <a href="https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat" target="_blank">ModelScope</a> • 🐦 <a href="https://twitter.com/thukeg" target="_blank">Twitter</a> • 👋 Join <a href="https://join.slack.com/t/chatglm/shared_invite/zt-25ti5uohv-A_hs~am_D3Q8XPZMpj7wwQ" target="_blank">Slack</a> and <a href="resources/WECHAT.md" target="_blank">WeChat</a>
+🤗 <a href="https://huggingface.co/collections/THUDM/glm-4-665fcf188c414b03c2f7e3b7" target="_blank">HF Repo</a> • 🤖 <a href="https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat" target="_blank">ModelScope</a>  • 🟣 <a href="https://wisemodel.cn/models/ZhipuAI/glm-4-9b-chat" target="_blank">WiseModel</a>  • 🐦 <a href="https://twitter.com/thukeg" target="_blank">Twitter</a> • 👋 Join <a href="https://discord.gg/fK2dz4bg" target="_blank">Discord</a> and <a href="resources/WECHAT.md" target="_blank">WeChat</a>
 </p>
 <p align="center">
 📍Experience and use a larger-scale GLM business model on the <a href="https://open.bigmodel.cn/?utm_campaign=open&_channel_track_key=OWTVNma9">Zhipu AI Open Platform</a>
@@ -12,24 +12,33 @@
 
 GLM-4-9B is the open-source version of the latest generation of pre-trained models in the GLM-4 series launched by Zhipu
 AI. In the evaluation of data sets in semantics, mathematics, reasoning, code, and knowledge, **GLM-4-9B**
-and its human preference-aligned version **GLM-4-9B-Chat** have shown superior performance beyond Llama-3-8B. In addition to
-multi-round conversations, GLM-4-9B-Chat
-also has advanced features such as web browsing, code execution, custom tool calls (Function Call), and long text
-reasoning (supporting up to 128K context). This generation of models has added multi-language support, supporting 26
-languages including Japanese, Korean, and German. We have also launched the **GLM-4-9B-Chat-1M** model that supports 1M
+and its human preference-aligned version **GLM-4-9B-Chat** have shown superior performance beyond Llama-3-8B. In
+addition to multi-round conversations, GLM-4-9B-Chat also has advanced features such as web browsing, code execution,
+custom tool calls (Function Call), and long text reasoning (supporting up to 128K context).
+This generation of models has added multi-language support, supporting 26 languages including Japanese, Korean,
+and German. We have also launched the **GLM-4-9B-Chat-1M** model that supports 1M
 context length (about 2 million Chinese characters) and the multimodal model GLM-4V-9B based on GLM-4-9B.
-**GLM-4V-9B** possesses dialogue capabilities in both Chinese and English at a high resolution of 1120*1120. 
-In various multimodal evaluations, including comprehensive abilities in Chinese and English, perception & reasoning, text recognition, and chart understanding, GLM-4V-9B demonstrates superior performance compared to GPT-4-turbo-2024-04-09, Gemini 1.0 Pro, Qwen-VL-Max, and Claude 3 Opus.
+**GLM-4V-9B** possesses dialogue capabilities in both Chinese and English at a high resolution of 1120*1120.
+In various multimodal evaluations, including comprehensive abilities in Chinese and English, perception & reasoning,
+text recognition, and chart understanding, GLM-4V-9B demonstrates superior performance compared to
+GPT-4-turbo-2024-04-09, Gemini 1.0 Pro, Qwen-VL-Max, and Claude 3 Opus.
 
 ## Model List
 
+| Model            | Type | Seq Length | Download                                                                                                                                | Online Demo                                                                                                                                                                                |
+|------------------|------|------------|-----------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GLM-4-9B         | Base | 8K         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b)  [🟣 WiseModel](https://wisemodel.cn/models/ZhipuAI/GLM-4-9B)      | /                                                                                                                                                                                          |
+| GLM-4-9B-Chat    | Chat | 128K       | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b-chat)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat) [🟣 WiseModel](https://wisemodel.cn/models/ZhipuAI/GLM-4-9B-Chat)      | [🤖 ModelScope CPU](https://modelscope.cn/studios/dash-infer/GLM-4-Chat-DashInfer-Demo/summary)<br> [🤖 ModelScope vLLM](https://modelscope.cn/studios/ZhipuAI/glm-4-9b-chat-vllm/summary) |
+| GLM-4-9B-Chat-1M | Chat | 1M         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b-chat-1m)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat-1m) [🟣 WiseModel](https://wisemodel.cn/models/ZhipuAI/GLM-4-9B-Chat-1M)   | /                                                                                                                                                                                          |
+| GLM-4V-9B        | Chat | 8K         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4v-9b)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4v-9b) [🟣 WiseModel](https://wisemodel.cn/models/ZhipuAI/GLM-4V-9B)        | [🤖 ModelScope](https://modelscope.cn/studios/ZhipuAI/glm-4v-9b-Demo/summary)                                                                                                              |
 
-| Model            | Type | Seq Length | Download                                                                                                                                | Online Demo                                                                                 |
-|------------------|------|------------|-----------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| GLM-4-9B         | Base | 8K         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b)                 | /                                                                                           |
-| GLM-4-9B-Chat    | Chat | 128K       | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b-chat)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat)       | [🤖 ModelScope](https://modelscope.cn/studios/dash-infer/GLM-4-Chat-DashInfer-Demo/summary) |
-| GLM-4-9B-Chat-1M | Chat | 1M         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b-chat-1m)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat-1m) | /                                                                                           |
-| GLM-4V-9B        | Chat | 8K         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4v-9b)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4v-9b)               | /                                                                                           |
+## Projects
+
+The following excellent open source repositories have in-depth support for the GLM-4-9B model, and everyone is welcome to expand their learning.
+
+Inference acceleration:
+
+* [chatglm.cpp](https://github.com/li-plus/chatglm.cpp): Real-time inference on your laptop accelerated by quantization, similar to llama.cpp.
 
 ## BenchMark
 
@@ -68,16 +77,17 @@ The long text capability was further evaluated on LongBench-Chat, and the result
 
 ### Multi Language
 
-The tests for GLM-4-9B-Chat and Llama-3-8B-Instruct are conducted on six multilingual datasets. The test results and the corresponding languages selected for each dataset are shown in the table below:
+The tests for GLM-4-9B-Chat and Llama-3-8B-Instruct are conducted on six multilingual datasets. The test results and the
+corresponding languages selected for each dataset are shown in the table below:
 
-| Dataset     | Llama-3-8B-Instruct | GLM-4-9B-Chat |                                           Languages                                            
+| Dataset     | Llama-3-8B-Instruct | GLM-4-9B-Chat |                                           Languages                                            |
 |:------------|:-------------------:|:-------------:|:----------------------------------------------------------------------------------------------:|
-| M-MMLU      |        49.6         |     56.6      |                                              all                                               
-| FLORES      |        25.0         |     28.8      | ru, es, de, fr, it, pt, pl, ja, nl, ar, tr, cs, vi, fa, hu, el, ro, sv, uk, fi, ko, da, bg, no 
-| MGSM        |        54.0         |     65.3      |                           zh, en, bn, de, es, fr, ja, ru, sw, te, th                           
-| XWinograd   |        61.7         |     73.1      |                                     zh, en, fr, jp, ru, pt                                     
-| XStoryCloze |        84.7         |     90.7      |                           zh, en, ar, es, eu, hi, id, my, ru, sw, te                           
-| XCOPA       |        73.3         |     80.1      |                           zh, et, ht, id, it, qu, sw, ta, th, tr, vi                           
+| M-MMLU      |        49.6         |     56.6      |                                              all                                               |
+| FLORES      |        25.0         |     28.8      | ru, es, de, fr, it, pt, pl, ja, nl, ar, tr, cs, vi, fa, hu, el, ro, sv, uk, fi, ko, da, bg, no |
+| MGSM        |        54.0         |     65.3      |                           zh, en, bn, de, es, fr, ja, ru, sw, te, th                           |
+| XWinograd   |        61.7         |     73.1      |                                     zh, en, fr, jp, ru, pt                                     |
+| XStoryCloze |        84.7         |     90.7      |                           zh, en, ar, es, eu, hi, id, my, ru, sw, te                           |
+| XCOPA       |        73.3         |     80.1      |                           zh, et, ht, id, it, qu, sw, ta, th, tr, vi                           |
 
 ### Function Call
 
@@ -111,6 +121,8 @@ classic tasks are as follows:
 | **GLM-4V-9B**              | 81.1                | 79.4                | 76.8              | 58.7       | 47.2     | 2163.8  | 46.6               | 81.1     | 786          |
 
 ## Quick call
+
+**For hardware configuration and system requirements, please check [here](basic_demo/README_en.md).**
 
 ### Use the following method to quickly call the GLM-4-9B-Chat language model
 
@@ -154,13 +166,7 @@ Use the vLLM backend for inference:
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 
-# GLM-4-9B-Chat-1M
-# max_model_len, tp_size = 1048576, 4
-
 # GLM-4-9B-Chat
-from transformers import AutoTokenizer
-from vllm import LLM, SamplingParams
-
 # If you encounter OOM, you can try to reduce max_model_len or increase tp_size
 max_model_len, tp_size = 131072, 1
 model_name = "THUDM/glm-4-9b-chat"
@@ -228,8 +234,8 @@ Note: GLM-4V-9B does not support calling using vLLM method yet.
 If you want to learn more about the GLM-4-9B series open source models, this open source repository provides developers
 with basic GLM-4-9B usage and development code through the following content
 
-+ [base](basic_demo/README.md): Contains
-+ Interaction code using transformers and VLLM backend
++ [basic_demo](basic_demo/README.md): Contains
++ Interaction code using transformers and vLLM backend
 + OpenAI API backend interaction code
 + Batch reasoning code
 
@@ -240,6 +246,17 @@ with basic GLM-4-9B usage and development code through the following content
 + [fintune_demo](finetune_demo/README.md): Contains
 + PEFT (LORA, P-Tuning) fine-tuning code
 + SFT fine-tuning code
+
+## Friendly Links
+
++ [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory): Efficient open-source fine-tuning framework,
+  already supports GLM-4-9B-Chat language model fine-tuning.
++ [SWIFT](https://github.com/modelscope/swift): LLM/VLM training framework from ModelScope, supports
+  GLM4-9B-Chat/GLM4v-9b-chat fine-tuning.
++ [Xorbits Inference](https://github.com/xorbitsai/inference): Performance-enhanced and comprehensive global inference
+  framework, easily deploy your own models or import cutting-edge open source models with one click.
++ [self-llm](https://github.com/datawhalechina/self-llm/tree/master/GLM-4): Datawhale's self-llm project, which includes
+  the GLM-4-9B open source model cookbook.
 
 ## License
 

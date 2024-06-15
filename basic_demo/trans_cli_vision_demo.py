@@ -17,7 +17,7 @@ from transformers import (
     AutoTokenizer,
     StoppingCriteria,
     StoppingCriteriaList,
-    TextIteratorStreamer, AutoModel
+    TextIteratorStreamer, AutoModel, BitsAndBytesConfig
 )
 
 from PIL import Image
@@ -33,8 +33,17 @@ model = AutoModel.from_pretrained(
     MODEL_PATH,
     trust_remote_code=True,
     device_map="auto",
-    torch_dtype=torch.bfloat16).eval()
+    torch_dtype=torch.bfloat16
+).eval()
 
+## For INT4 inference
+# model = AutoModel.from_pretrained(
+#     MODEL_PATH,
+#     trust_remote_code=True,
+#     quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+#     torch_dtype=torch.bfloat16,
+#     low_cpu_mem_usage=True
+# ).eval()
 
 class StopOnTokens(StoppingCriteria):
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
@@ -83,7 +92,7 @@ if __name__ == "__main__":
             tokenize=True,
             return_tensors="pt",
             return_dict=True
-        ).to(model.device)
+        ).to(next(model.parameters()).device)
         streamer = TextIteratorStreamer(
             tokenizer=tokenizer,
             timeout=60,
@@ -103,8 +112,7 @@ if __name__ == "__main__":
         }
         t = Thread(target=model.generate, kwargs=generate_kwargs)
         t.start()
-
-        print("GLM-4:", end="", flush=True)
+        print("GLM-4V:", end="", flush=True)
         for new_token in streamer:
             if new_token:
                 print(new_token, end="", flush=True)

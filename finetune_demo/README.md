@@ -2,7 +2,7 @@
 
 Read this in [English](README_en.md)
 
-本 demo 中，你将体验到如何微调 glm-4-9b 对话开源模型(不支持视觉理解模型)。 请严格按照文档的步骤进行操作，以避免不必要的错误。
+本 demo 中，你将体验到如何微调 GLM-4-9B-Chat 对话开源模型(不支持视觉理解模型)。 请严格按照文档的步骤进行操作，以避免不必要的错误。
 
 ## 硬件检查
 
@@ -11,7 +11,7 @@ Read this in [English](README_en.md)
 
 + OS: Ubuntu 22.04
 + Memory: 512GB
-+ Python: 3.12.3
++ Python: 3.10.12 / 3.12.3 (如果您使用 Python 3.12.3  目前需要使用 git 源码安装 nltk)
 + CUDA Version:  12.3
 + GPU Driver: 535.104.05
 + GPU: NVIDIA A100-SXM4-80GB * 8
@@ -23,6 +23,8 @@ Read this in [English](README_en.md)
 | SFT (Zero3 method) | 80935MiB<br/>(Each GPU，需要使用8张GPU) | 20G     |
 
 在开始微调之前，请你先安装`basic_demo`中的依赖，同时您需要安装本目录下的依赖项：
+
+> NOTE: NLTK 3.8.1 部分代码可能尚未对 python 3.12 进行适配，该情况下的适配方法可参考[issues #38](https://github.com/THUDM/GLM-4/issues/38)
 
 ```bash
 pip install -r requirements.txt
