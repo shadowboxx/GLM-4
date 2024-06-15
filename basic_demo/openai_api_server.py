@@ -7,18 +7,20 @@ import gc
 import json
 import torch
 
-from vllm import SamplingParams, AsyncEngineArgs, AsyncLLMEngine
+#from vllm import SamplingParams, AsyncEngineArgs, AsyncLLMEngine
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from typing import List, Literal, Optional, Union
 from pydantic import BaseModel, Field
-from transformers import AutoTokenizer, LogitsProcessor
+from transformers import AutoTokenizer, LogitsProcessor, AutoModelForCausalLM
 from sse_starlette.sse import EventSourceResponse
 
-EventSourceResponse.DEFAULT_PING_INTERVAL = 1000
-MODEL_PATH = 'THUDM/glm-4-9b'
+from peft import AutoPeftModelForCausalLM, PeftModelForCausalLM
+from pathlib import Path
 
+EventSourceResponse.DEFAULT_PING_INTERVAL = 1000
+MODEL_PATH = os.environ.get('MODEL_PATH', 'THUDM/glm-4-9b')
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -525,19 +527,33 @@ async def parse_output_text(model_id: str, value: str):
 
 
 if __name__ == "__main__":
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
-    engine_args = AsyncEngineArgs(
-        model=MODEL_PATH,
-        tokenizer=MODEL_PATH,
-        tokenizer_mode="slow",
-        tensor_parallel_size=1,
-        dtype="bfloat16",
-        trust_remote_code=True,
-        gpu_memory_utilization=0.9,
-        enforce_eager=True,
-        worker_use_ray=True,
-        engine_use_ray=False,
-        disable_log_requests=True
+    # tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
+    # engine_args = AsyncEngineArgs(
+    #     model=MODEL_PATH,
+    #     tokenizer=MODEL_PATH,
+    #     tokenizer_mode="slow",
+    #     tensor_parallel_size=1,
+    #     dtype="bfloat16",
+    #     trust_remote_code=True,
+    #     gpu_memory_utilization=0.9,
+    #     enforce_eager=True,
+    #     worker_use_ray=True,
+    #     engine_use_ray=False,
+    #     disable_log_requests=True
+    # )
+    # engine = AsyncLLMEngine.from_engine_args(engine_args)
+    
+    model_dir = Path(MODEL_PATH).expanduser().resolve()
+    if (model_dir / 'adapter_config.json').exists():
+        model = AutoPeftModelForCausalLM.from_pretrained(
+            model_dir, trust_remote_code=True, device_map='auto')
+        tokenizer_dir = model.peft_config['default'].base_model_name_or_path
+    else:
+        model = AutoModelForCausalLM.from_pretrained(model_dir, trust_remote_code=True, device_map='cuda')
+        tokenizer_dir = model_dir
+
+    tokenizer = AutoTokenizer.from_pretrained(
+        tokenizer_dir, trust_remote_code=True, encode_special_tokens=True, use_fast=False
     )
-    engine = AsyncLLMEngine.from_engine_args(engine_args)
-    uvicorn.run(app, host='0.0.0.0', port=8000, workers=1)
+
+    uvicorn.run(app, host='0.0.0.0', port=8080, workers=1)

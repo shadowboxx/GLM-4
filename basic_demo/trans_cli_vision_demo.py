@@ -103,6 +103,7 @@ if __name__ == "__main__":
         }
         t = Thread(target=model.generate, kwargs=generate_kwargs)
         t.start()
+
         print("GLM-4:", end="", flush=True)
         for new_token in streamer:
             if new_token:
