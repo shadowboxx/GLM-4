@@ -5,10 +5,12 @@
 </p>
 <p align="center">
 📍Experience and use a larger-scale GLM business model on the <a href="https://open.bigmodel.cn/?utm_campaign=open&_channel_track_key=OWTVNma9">Zhipu AI Open Platform</a>
-
 </p>
 
 ## Update
+- 🔥 **News**: ``2024/6/28``: We have updated the running files and configuration files of the model repository to support Flash Attention 2,
+- 🔥 **News**: ``2024/6/24``: We have updated the running files and configuration files of the model repository to support Flash Attention 2,
+Please update the model configuration file and refer to the sample code in `basic_demo/trans_cli_demo.py`.
 - 🔥🔥 **News**: ``2024/6/19``: We updated the running files and configuration files of the model repository and fixed some model inference issues. Welcome to clone the latest model repository.
 - 🔥 **News**: ``2024/6/18``: We released a [technical report](https://arxiv.org/pdf/2406.12793), welcome to check it out.
 - 🔥 **News**: ``2024/6/05``: We released the GLM-4-9B series of open source models
@@ -36,14 +38,6 @@ GPT-4-turbo-2024-04-09, Gemini 1.0 Pro, Qwen-VL-Max, and Claude 3 Opus.
 | GLM-4-9B-Chat    | Chat | 128K       | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b-chat)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat) [🟣 WiseModel](https://wisemodel.cn/models/ZhipuAI/GLM-4-9B-Chat)      | [🤖 ModelScope CPU](https://modelscope.cn/studios/dash-infer/GLM-4-Chat-DashInfer-Demo/summary)<br> [🤖 ModelScope vLLM](https://modelscope.cn/studios/ZhipuAI/glm-4-9b-chat-vllm/summary) |
 | GLM-4-9B-Chat-1M | Chat | 1M         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4-9b-chat-1m)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4-9b-chat-1m) [🟣 WiseModel](https://wisemodel.cn/models/ZhipuAI/GLM-4-9B-Chat-1M)   | /                                                                                                                                                                                          |
 | GLM-4V-9B        | Chat | 8K         | [🤗 Huggingface](https://huggingface.co/THUDM/glm-4v-9b)  [🤖 ModelScope](https://modelscope.cn/models/ZhipuAI/glm-4v-9b) [🟣 WiseModel](https://wisemodel.cn/models/ZhipuAI/GLM-4V-9B)        | [🤖 ModelScope](https://modelscope.cn/studios/ZhipuAI/glm-4v-9b-Demo/summary)                                                                                                              |
-
-## Projects
-
-The following excellent open source repositories have in-depth support for the GLM-4-9B model, and everyone is welcome to expand their learning.
-
-Inference acceleration:
-
-* [chatglm.cpp](https://github.com/li-plus/chatglm.cpp): Real-time inference on your laptop accelerated by quantization, similar to llama.cpp.
 
 ## BenchMark
 
@@ -257,11 +251,13 @@ with basic GLM-4-9B usage and development code through the following content
 + [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory): Efficient open-source fine-tuning framework,
   already supports GLM-4-9B-Chat language model fine-tuning.
 + [SWIFT](https://github.com/modelscope/swift): LLM/VLM training framework from ModelScope, supports
-  GLM4-9B-Chat/GLM4v-9b-chat fine-tuning.
+  GLM-4-9B-Chat / GLM-4V-9b fine-tuning.
 + [Xorbits Inference](https://github.com/xorbitsai/inference): Performance-enhanced and comprehensive global inference
   framework, easily deploy your own models or import cutting-edge open source models with one click.
++ [LangChain-ChatChat](https://github.com/chatchat-space/Langchain-Chatchat): RAG and Agent applications based on language models such as Langchain and ChatGLM
 + [self-llm](https://github.com/datawhalechina/self-llm/tree/master/GLM-4): Datawhale's self-llm project, which includes
   the GLM-4-9B open source model cookbook.
++ [chatglm.cpp](https://github.com/li-plus/chatglm.cpp): Real-time inference on your laptop accelerated by quantization, similar to llama.cpp.
 
 ## License
 

@@ -8,6 +8,8 @@ Usage:
 
 Note: The script includes a modification to handle markdown to plain text conversion,
 ensuring that the CLI interface displays formatted text correctly.
+
+If you use flash attention, you should install the flash-attn and  add attn_implementation="flash_attention_2" in model loading.
 """
 
 import os
@@ -40,20 +42,10 @@ tokenizer = AutoTokenizer.from_pretrained(
     trust_remote_code=True,
     encode_special_tokens=True
 )
-
-# model = AutoModel.from_pretrained(
-#     MODEL_PATH,
-#     trust_remote_code=True,
-#     device_map="auto").eval()
-
-# For INT4 inference
 model = AutoModel.from_pretrained(
     MODEL_PATH,
     trust_remote_code=True,
-    quantization_config=BitsAndBytesConfig(load_in_4bit=True),
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True
-).eval()
+    device_map="auto").eval()
 
 
 class StopOnTokens(StoppingCriteria):
