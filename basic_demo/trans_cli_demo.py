@@ -42,11 +42,19 @@ tokenizer = AutoTokenizer.from_pretrained(
     trust_remote_code=True,
     encode_special_tokens=True
 )
+# model = AutoModel.from_pretrained(
+#     MODEL_PATH,
+#     trust_remote_code=True,
+#     device_map="auto").eval()
+
+# For INT4 inference
 model = AutoModel.from_pretrained(
     MODEL_PATH,
     trust_remote_code=True,
-    device_map="auto").eval()
-
+    quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True
+).eval()
 
 class StopOnTokens(StoppingCriteria):
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
