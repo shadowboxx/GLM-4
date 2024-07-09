@@ -8,7 +8,7 @@ import torch
 import random
 import string
 
-#from vllm import SamplingParams, AsyncEngineArgs, AsyncLLMEngine
+from vllm import SamplingParams, AsyncEngineArgs, AsyncLLMEngine
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
