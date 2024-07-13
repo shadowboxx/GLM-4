@@ -29,13 +29,13 @@ tokenizer = AutoTokenizer.from_pretrained(
     trust_remote_code=True,
     encode_special_tokens=True
 )
-model = AutoModel.from_pretrained(
-    MODEL_PATH,
-    trust_remote_code=True,
-    # attn_implementation="flash_attention_2",  # Use Flash Attention
-    # torch_dtype=torch.bfloat16,  # using flash-attn must use bfloat16 or float16,
-    device_map="auto",
-).eval()
+# model = AutoModel.from_pretrained(
+#     MODEL_PATH,
+#     trust_remote_code=True,
+#     # attn_implementation="flash_attention_2",  # Use Flash Attention
+#     # torch_dtype=torch.bfloat16,  # using flash-attn must use bfloat16 or float16,
+#     device_map="auto",
+# ).eval()
 
 
 ## For INT4 inference

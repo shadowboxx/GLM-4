@@ -9,14 +9,13 @@ Usage:
 Note: The script includes a modification to handle markdown to plain text conversion,
 ensuring that the CLI interface displays formatted text correctly.
 """
-import time
+import time,os
 import asyncio
 from transformers import AutoTokenizer
 from vllm import SamplingParams, AsyncEngineArgs, AsyncLLMEngine
 from typing import List, Dict
 
-MODEL_PATH = 'THUDM/glm-4-9b'
-
+MODEL_PATH = os.environ.get('MODEL_PATH', 'THUDM/glm-4v-9b')
 
 def load_model_and_tokenizer(model_dir: str):
     engine_args = AsyncEngineArgs(
@@ -40,6 +39,7 @@ def load_model_and_tokenizer(model_dir: str):
         encode_special_tokens=True
     )
     engine = AsyncLLMEngine.from_engine_args(engine_args)
+    engine.set_quantization_config(bit_width=4)
     return engine, tokenizer
 
 
