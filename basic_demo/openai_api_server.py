@@ -623,6 +623,7 @@ if __name__ == "__main__":
     engine_args = AsyncEngineArgs(
         model=MODEL_PATH,
         tokenizer=MODEL_PATH,
+        #quantization='awq',
         # 如果你有多张显卡，可以在这里设置成你的显卡数量
         tensor_parallel_size=1,
         dtype="bfloat16",
@@ -634,8 +635,11 @@ if __name__ == "__main__":
         engine_use_ray=False,
         disable_log_requests=True,
         max_model_len=MAX_MODEL_LENGTH,
+        # 如果遇见 OOM 现象，建议开启下述参数
+        enable_chunked_prefill=True,
+        max_num_batched_tokens=8192
     )
     engine = AsyncLLMEngine.from_engine_args(engine_args)
-    engine.set_quantization_config(bit_width=4)
+    #engine.set_quantization_config(bit_width=4)
 
-    uvicorn.run(app, host='0.0.0.0', port=8000, workers=1)
+    uvicorn.run(app, host='0.0.0.0', port=8080, workers=1)
