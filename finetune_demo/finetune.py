@@ -22,6 +22,7 @@ from transformers import (
     GenerationConfig,
     PreTrainedTokenizer,
     Seq2SeqTrainingArguments,
+    BitsAndBytesConfig
 )
 from transformers import DataCollatorForSeq2Seq as _DataCollatorForSeq2Seq
 from transformers import Seq2SeqTrainer as _Seq2SeqTrainer
@@ -330,6 +331,7 @@ def load_tokenizer_and_model(
             trust_remote_code=True,
             empty_init=False,
             use_cache=False,
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True),
             torch_dtype=torch.bfloat16  # Must use BFloat 16
         )
         model = get_peft_model(model, peft_config)
@@ -340,6 +342,7 @@ def load_tokenizer_and_model(
             trust_remote_code=True,
             empty_init=False,
             use_cache=False,
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True),
             torch_dtype=torch.bfloat16
         )
     return tokenizer, model
