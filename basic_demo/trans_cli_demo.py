@@ -20,41 +20,34 @@ from transformers import AutoTokenizer, StoppingCriteria, StoppingCriteriaList, 
 MODEL_PATH = os.environ.get('MODEL_PATH', 'THUDM/glm-4-9b-chat')
 
 ## If use peft model.
-# def load_model_and_tokenizer(model_dir, trust_remote_code: bool = True):
-#     if (model_dir / 'adapter_config.json').exists():
-#         model = AutoModel.from_pretrained(
-#             model_dir, trust_remote_code=trust_remote_code, device_map='auto'
-#         )
-#         tokenizer_dir = model.peft_config['default'].base_model_name_or_path
-#     else:
-#         model = AutoModel.from_pretrained(
-#             model_dir, trust_remote_code=trust_remote_code, device_map='auto'
-#         )
-#         tokenizer_dir = model_dir
-#     tokenizer = AutoTokenizer.from_pretrained(
-#         tokenizer_dir, trust_remote_code=trust_remote_code, use_fast=False
-#     )
-#     return model, tokenizer
+model = AutoModel.from_pretrained(
+    MODEL_PATH, trust_remote_code=True, device_map='auto', 
+    quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+)
 
+if os.path.exists(os.path.join(MODEL_PATH, 'adapter_config.json')):
+    tokenizer_dir = model.peft_config['default'].base_model_name_or_path
+else:
+    tokenizer_dir = MODEL_PATH
 
 tokenizer = AutoTokenizer.from_pretrained(
-    MODEL_PATH,
-    trust_remote_code=True,
-    encode_special_tokens=True
+    tokenizer_dir, trust_remote_code=True, use_fast=False
 )
+
+# tokenizer = AutoTokenizer.from_pretrained(
+#     MODEL_PATH,
+#     trust_remote_code=True,
+#     encode_special_tokens=True
+# )
+
+# # For INT4 inference
 # model = AutoModel.from_pretrained(
 #     MODEL_PATH,
 #     trust_remote_code=True,
-#     device_map="auto").eval()
-
-# For INT4 inference
-model = AutoModel.from_pretrained(
-    MODEL_PATH,
-    trust_remote_code=True,
-    quantization_config=BitsAndBytesConfig(load_in_4bit=True),
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True
-).eval()
+#     quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+#     torch_dtype=torch.bfloat16,
+#     low_cpu_mem_usage=True
+# ).eval()
 
 class StopOnTokens(StoppingCriteria):
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
