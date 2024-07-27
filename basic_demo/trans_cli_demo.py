@@ -21,7 +21,7 @@ MODEL_PATH = os.environ.get('MODEL_PATH', 'THUDM/glm-4-9b-chat')
 
 ## If use peft model.
 model = AutoModel.from_pretrained(
-    MODEL_PATH, trust_remote_code=True, device_map='auto', 
+    MODEL_PATH, trust_remote_code=True, device_map='cuda', 
     quantization_config=BitsAndBytesConfig(load_in_4bit=True),
 )
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     history = []
     max_length = 8192
     top_p = 0.8
-    temperature = 0.6
+    temperature = 0.9
     stop = StopOnTokens()
 
     print("Welcome to the GLM-4-9B CLI chat. Type your messages below.")
@@ -70,6 +70,11 @@ if __name__ == "__main__":
         user_input = input("\nYou: ")
         if user_input.lower() in ["exit", "quit"]:
             break
+
+        if not user_input : 
+            history = []
+            continue
+            
         history.append([user_input, ""])
 
         messages = []

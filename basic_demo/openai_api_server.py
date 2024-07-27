@@ -15,7 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from typing import List, Literal, Optional, Union
 from pydantic import BaseModel, Field
-from transformers import AutoTokenizer, LogitsProcessor, AutoModelForCausalLM
+from transformers import AutoTokenizer, LogitsProcessor, AutoModelForCausalLM, AutoModel, BitsAndBytesConfig
 from sse_starlette.sse import EventSourceResponse
 
 from peft import AutoPeftModelForCausalLM, PeftModelForCausalLM
@@ -619,10 +619,25 @@ async def parse_output_text(model_id: str, value: str, function_call: ChoiceDelt
 
 
 if __name__ == "__main__":
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
+
+    model = AutoModel.from_pretrained(
+        MODEL_PATH, trust_remote_code=True, device_map='auto', 
+        quantization_config=BitsAndBytesConfig(load_in_4bit=True),
+    )
+
+    if os.path.exists(os.path.join(MODEL_PATH, 'adapter_config.json')):
+        tokenizer_dir = model.peft_config['default'].base_model_name_or_path
+    else:
+        tokenizer_dir = MODEL_PATH
+
+    tokenizer = AutoTokenizer.from_pretrained(
+        tokenizer_dir, trust_remote_code=True, use_fast=False
+    )
+
+    # tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
     engine_args = AsyncEngineArgs(
         model=MODEL_PATH,
-        tokenizer=MODEL_PATH,
+        tokenizer=tokenizer_dir,
         #quantization='awq',
         # 如果你有多张显卡，可以在这里设置成你的显卡数量
         tensor_parallel_size=1,
