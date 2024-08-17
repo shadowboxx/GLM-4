@@ -10,10 +10,22 @@
 Read this in [English](README_en.md)
 
 ## 项目更新
-- 🔥🔥 **News**: ```2024/07/24```: 我们发布了与长文本相关的最新技术解读，关注 [这里](https://medium.com/@ChatGLM/glm-long-scaling-pre-trained-model-contexts-to-millions-caa3c48dea85) 查看我们在训练 GLM-4-9B 开源模型中关于长文本技术的技术报告。
-- 🔥 **News**: ``2024/7/16``: GLM-4-9B-Chat 模型依赖的` transformers`版本升级到 `4.42.4`, 请更新模型配置文件并参考 `basic_demo/requirements.txt` 更新依赖。
+
+- 🔥🔥 **News**: ```2024/08/15```: 我们开源具备长文本输出能力(单轮对话大模型输出可超过1万token)
+  的模型 [longwriter-glm4-9b](https://huggingface.co/THUDM/LongWriter-glm4-9b)
+  以及数据集 [LongWriter-6k](https://huggingface.co/datasets/THUDM/LongWriter-6k),
+  欢迎在 [Huggingface Space](https://huggingface.co/spaces/THUDM/LongWriter)
+  或 [魔搭社区空间](https://modelscope.cn/studios/ZhipuAI/LongWriter-glm4-9b-demo) 在线体验。
+- 🔥 **News**: ```2024/08/12```: GLM-4-9B-Chat 模型依赖的`transformers`版本升级到 `4.44.0`，请重新拉取除模型权重(
+  `*.safetensor` 文件 和 `tokenizer.model`)外的文件并参考 `basic_demo/requirements.txt` 严格更新依赖。
+- 🔥 **News**: ```2024/07/24```:
+  我们发布了与长文本相关的最新技术解读，关注 [这里](https://medium.com/@ChatGLM/glm-long-scaling-pre-trained-model-contexts-to-millions-caa3c48dea85)
+  查看我们在训练 GLM-4-9B 开源模型中关于长文本技术的技术报告。
+- 🔥 **News**: ``2024/7/16``: GLM-4-9B-Chat 模型依赖的`transformers`版本升级到 `4.42.4`,
+  请更新模型配置文件并参考 `basic_demo/requirements.txt` 更新依赖。
 - 🔥 **News**: ``2024/7/9``: GLM-4-9B-Chat
-  模型已适配 [Ollama](https://github.com/ollama/ollama),[Llama.cpp](https://github.com/ggerganov/llama.cpp)，您可以在[PR](https://github.com/ggerganov/llama.cpp/pull/8031) 查看具体的细节。
+  模型已适配 [Ollama](https://github.com/ollama/ollama),[Llama.cpp](https://github.com/ggerganov/llama.cpp)
+  ，您可以在[PR](https://github.com/ggerganov/llama.cpp/pull/8031) 查看具体的细节。
 - 🔥 **News**: ``2024/7/1``: 我们更新了 GLM-4V-9B 的微调，您需要更新我们的模型仓库的运行文件和配置文件，
   以支持这个功能，更多微调细节 (例如数据集格式，显存要求)，请前往 [查看](finetune_demo)。
 - 🔥 **News**: ``2024/6/28``: 我们与英特尔技术团队合作，改进了 GLM-4-9B-Chat 的 ITREX 和 OpenVINO 部署教程。您可以使用英特尔
@@ -251,7 +263,8 @@ with torch.no_grad():
 + [Xorbits Inference](https://github.com/xorbitsai/inference): 性能强大且功能全面的分布式推理框架，轻松一键部署你自己的模型或内置的前沿开源模型。
 + [LangChain-ChatChat](https://github.com/chatchat-space/Langchain-Chatchat): 基于 Langchain 与 ChatGLM 等语言模型的 RAG
   与 Agent 应用
-+ [self-llm](https://github.com/datawhalechina/self-llm/tree/master/GLM-4): Datawhale 团队的提供的 GLM-4-9B 系列模型使用教程。
++ [self-llm](https://github.com/datawhalechina/self-llm/tree/master/models/GLM-4): Datawhale 团队的提供的 GLM-4-9B
+  系列模型使用教程。
 + [chatglm.cpp](https://github.com/li-plus/chatglm.cpp): 类似 llama.cpp 的量化加速推理方案，实现笔记本上实时对话
 
 ## 协议
